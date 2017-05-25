@@ -158,12 +158,18 @@ public class CustomKnob extends View {
                 }
                 //Log.v("test","rotateDegree="+rotateDegree);
                 progress=(int)(rotateDegree*maxValue/180);
-                listener.changingProgress(progress);
+                if(listener!=null){
+                    listener.changingProgress(progress);
+                }
+
                 break;
             case MotionEvent.ACTION_UP:
                 invalidate();//手抬起的时候更新一次界面
                 progress=(int)(rotateDegree*maxValue/180);//旋转过的角度转化为进度值
-                listener.rotatedProgress(progress);
+                if(listener!=null){
+                    listener.rotatedProgress(progress);
+                }
+
                 break;
         }
         return true;
